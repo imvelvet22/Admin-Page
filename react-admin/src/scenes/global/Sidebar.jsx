@@ -53,7 +53,7 @@ const SidebarContent = () => {
           color: "#868dfb !important",
         },
         "& .ps-menuitem.active": {
-          color: "#FFC0CB!important",
+          color: "#6870fa !important",
         },
       }}
     >
