@@ -1,9 +1,167 @@
-import React from "react";
+import React, { useState } from "react";
+import { Sidebar, Menu, MenuItem, ProSidebarProvider, useProSidebar } from "react-pro-sidebar";
+import 'react-pro-sidebar/dist';
+import { IconButton, Typography, Box } from "@mui/material";
+import { useTheme } from "@emotion/react";
+import { Link } from "react-router-dom";
+import { tokens } from "../../theme";
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import PhoneIcon from '@mui/icons-material/Phone';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import HelpIcon from '@mui/icons-material/Help';
+import MenuIcon from '@mui/icons-material/Menu';
 
-export const Sidebar = () => {
+const Item = ({ title, to, icon, selected, setSelected }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   return (
-    <div>Sidebar</div>
-  )
-}
+    <MenuItem
+      active={selected === title}
+      style={{
+        color: colors.grey[100],
+      }}
+      onClick={() => setSelected(title)}
+      icon={icon}
+    >
+      <Typography>{title}</Typography>
+      <Link to={to} />
+    </MenuItem>
+  );
+};
+
+const SidebarContent = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const { collapseSidebar, collapsed } = useProSidebar();
+
+  return (
+    <Box
+      sx={{
+        "& .ps-sidebar-container": {
+          background: `${colors.primary[400]} !important`,
+        },
+        "& .ps-sidebar-wrapper": {
+          backgroundColor: "transparent !important",
+        },
+        "& .ps-menuitem": {
+          padding: "5px 35px 5px 20px !important",
+        },
+        "& .ps-menuitem:hover": {
+          color: "#868dfb !important",
+        },
+        "& .ps-menuitem.active": {
+          color: "#6870fa !important",
+        },
+      }}
+    >
+      <Sidebar collapsed={isCollapsed}>
+        <Menu iconShape="square">
+          {/* LOGO AND MENU ICON */}
+          <MenuItem
+            onClick={() => {
+              setIsCollapsed(!isCollapsed);
+              collapseSidebar(!collapsed);
+            }}
+            icon={isCollapsed ? <MenuIcon /> : undefined}
+            style={{
+              margin: "10px 0 20px 0",
+              color: colors.grey[100],
+            }}
+          >
+            {!isCollapsed && (
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                ml="15px"
+              >
+                <Typography variant="h3" color={colors.grey[100]}>
+                 {/*admin */}
+                </Typography>
+                <IconButton
+                  onClick={() => {
+                    setIsCollapsed(!isCollapsed);
+                    collapseSidebar(!collapsed);
+                  }}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Box>
+            )}
+          </MenuItem>
+
+          {/* USER */}
+          {!isCollapsed && (
+            <Box mb="25px">
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <img
+                  alt="profile-user"
+                  width="100px"
+                  height="100px"
+                  src={`../../assets/userr.png`}
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                />
+              </Box>
+              <Box textAlign="center">
+                <Typography
+                  variant="h2"
+                  color={colors.grey[100]}
+                  fontWeight="bold"
+                  sx={{ m: "10px 0 0 0" }}
+                >
+                  Admin
+                </Typography>
+                <Typography variant="h5" color={colors.greenAccent[500]}>
+                  VSM
+                </Typography>
+              </Box>
+            </Box>
+          )}
+
+          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+            <Item
+              title="Dashboard"
+              to="/"
+              icon={<HomeIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Visitors"
+              to="/visitor"
+              icon={<PersonIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Contact"
+              to="/contacts"
+              icon={<PhoneIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Calendar"
+              to="/calendar"
+              icon={<CalendarMonthIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Help"
+              to="/help"
+              icon={<HelpIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </Box>
+        </Menu>
+      </Sidebar>
+    </Box>
+  );
+};
+
 
 export default Sidebar;
