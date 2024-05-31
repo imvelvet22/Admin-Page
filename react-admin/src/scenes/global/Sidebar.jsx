@@ -33,6 +33,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const SidebarContent = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [selected, setSelected] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { collapseSidebar, collapsed } = useProSidebar();
 
@@ -52,7 +53,7 @@ const SidebarContent = () => {
           color: "#868dfb !important",
         },
         "& .ps-menuitem.active": {
-          color: "#6870fa !important",
+          color: "#FFC0CB!important",
         },
       }}
     >
@@ -113,8 +114,8 @@ const SidebarContent = () => {
                 >
                   Admin
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VSM
+                <Typography variant="h5" color={colors.blueAccent[500]}>
+                  VMS
                 </Typography>
               </Box>
             </Box>
@@ -128,6 +129,7 @@ const SidebarContent = () => {
               selected={selected}
               setSelected={setSelected}
             />
+
             <Item
               title="Visitors"
               to="/visitor"
@@ -163,5 +165,12 @@ const SidebarContent = () => {
   );
 };
 
+const App = () => {
+  return (
+    <ProSidebarProvider>
+      <SidebarContent />
+    </ProSidebarProvider>
+  );
+};
 
-export default Sidebar;
+export default App;
