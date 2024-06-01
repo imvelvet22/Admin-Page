@@ -6,7 +6,7 @@ import { useTheme } from "@emotion/react";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import PhoneIcon from '@mui/icons-material/Phone';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HelpIcon from '@mui/icons-material/Help';
@@ -108,7 +108,7 @@ const SidebarContent = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/userr.png`}
+                  src={`../../assets/logoo.png`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -119,10 +119,10 @@ const SidebarContent = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Admin
+                  Heart Sheet
                 </Typography>
                 <Typography variant="h5" color={colors.blueAccent[500]}>
-                  VMS
+                  Project Management System
                 </Typography>
               </Box>
             </Box>
@@ -156,9 +156,9 @@ const SidebarContent = () => {
             />
 
             <Item
-              title="Visitors"
-              to="/visitor"
-              icon={<PersonIcon />}
+              title="Project"
+              to="/project"
+              icon={<AccountTreeIcon />}
               selected={selected}
               setSelected={setSelected}
             />

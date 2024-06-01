@@ -5,7 +5,7 @@ import Topbar from "./scenes/global/Topbar.jsx";
 import Dashboard from "./scenes/dashboard";
 import Sidebar from "./scenes/global/Sidebar.jsx";
 //import Contacts from "./scenes/Contacts";
-import Calendar from "./scenes/calendar/index.jsx"
+import Calendar from "./scenes/calendar/index.js"
 
 
 function App() {

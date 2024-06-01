@@ -24,7 +24,7 @@ import {
         const [currentEvents, setCurrentEvents] = useState([]);
 
     const handleDateClick = (selected) => {
-        const title = prompt("Please enter a new title for your event");
+        const title = prompt("Add Schedule");
         const calendarApi = selected.view.calendar;
         calendarApi.unselect();
     
@@ -52,7 +52,7 @@ import {
       return (
         <div>
           <Box m="20px">
-            <Header title="Calendar" subtitle="See your Appointments" />
+            <Header title="Calendar" subtitle="Manage your Projects" />
       
             <Box display="flex" justifyContent="space-between">
               {/* CALENDAR SIDEBAR */}

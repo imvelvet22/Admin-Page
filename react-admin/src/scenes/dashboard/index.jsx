@@ -8,7 +8,7 @@ const Dashboard = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Visitor Management System" subtitle="Welcome to your dashboard" />
+        <Header title="Project Portfolio Management System" subtitle="Welcome to your dashboard" />
       
       </Box>
       </Box>
