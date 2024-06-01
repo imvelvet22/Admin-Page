@@ -5,7 +5,7 @@ import Topbar from "./scenes/global/Topbar.jsx";
 import Dashboard from "./scenes/dashboard";
 import Sidebar from "./scenes/global/Sidebar.jsx";
 //import Contacts from "./scenes/Contacts";
-//import Calendar from "./scenes/Sidebar";
+import Calendar from "./scenes/calendar/index.jsx"
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               {/* <Route path="/Contacts" element={<Contacts />} /> */}
-              {/* <Route path="/Calendar" element={<Calendar />} /> */}
+               <Route path="/Calendar" element={<Calendar />} /> 
             </Routes>
           </main>
         </div>

@@ -11,22 +11,29 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HelpIcon from '@mui/icons-material/Help';
 import MenuIcon from '@mui/icons-material/Menu';
+import BadgeIcon from '@mui/icons-material/Badge';
+import LogoutIcon from '@mui/icons-material/Logout';
+import styled from "@emotion/styled";
+
+
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
   return (
-    <MenuItem
-      active={selected === title}
-      style={{
-        color: colors.grey[100],
-      }}
-      onClick={() => setSelected(title)}
-      icon={icon}
-    >
-      <Typography>{title}</Typography>
-      <Link to={to} />
-    </MenuItem>
+    <Link to={to} style={{ textDecoration: "none", color: "inherit" }}>
+      <MenuItem
+        active={selected === title}
+        style={{
+          color: colors.grey[100],
+        }}
+        onClick={() => setSelected(title)}
+        icon={icon}
+      >
+        <Typography>{title}</Typography>
+      </MenuItem>
+    </Link>
   );
 };
 
@@ -49,7 +56,7 @@ const SidebarContent = () => {
         "& .ps-menuitem": {
           padding: "5px 35px 5px 20px !important",
         },
-        "& .ps-menuitem:hover": {
+        "& .ps-menuitem-root:hover": {
           color: "#868dfb !important",
         },
         "& .ps-menuitem.active": {
@@ -78,7 +85,7 @@ const SidebarContent = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
+                <Typography variant="h3" color={colors.primary[900]}>
                  {/*admin */}
                 </Typography>
                 <IconButton
@@ -130,6 +137,24 @@ const SidebarContent = () => {
               setSelected={setSelected}
             />
 
+            {!isCollapsed && (
+              <Typography
+                variant="body1"
+                color={colors.grey[300]}
+                sx={{ m: "15px 0 5px 20px" }}
+              >
+                Data
+              </Typography>
+            )}
+
+              <Item
+              title="Employee"
+              to="/employee"
+              icon={<BadgeIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
             <Item
               title="Visitors"
               to="/visitor"
@@ -144,6 +169,17 @@ const SidebarContent = () => {
               selected={selected}
               setSelected={setSelected}
             />
+
+            {!isCollapsed && (
+              <Typography
+                variant="body1"
+                color={colors.grey[300]}
+                sx={{ m: "15px 0 5px 20px" }}
+              >
+                Appointments
+              </Typography>
+            )}
+
             <Item
               title="Calendar"
               to="/calendar"
@@ -155,6 +191,13 @@ const SidebarContent = () => {
               title="Help"
               to="/help"
               icon={<HelpIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Logout"
+              to="/logout"
+              icon={<LogoutIcon />}
               selected={selected}
               setSelected={setSelected}
             />
